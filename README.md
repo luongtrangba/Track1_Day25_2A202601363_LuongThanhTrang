@@ -1,50 +1,65 @@
 # Lab Day 25: Từ sản phẩm chạy được đến sản phẩm bán được
 
-**Chủ đề:** AI Pricing · GTM · Evidence<br>
-**Học viên:** Luong Thanh Trang<br>
-**Mã học viên:** [Điền mã học viên]
+**Chủ đề:** AI Pricing · GTM · Evidence
+**Nhóm thực hiện:**<br>&nbsp;&nbsp;Lương Thanh Trang — PM — 2A202601363<br>&nbsp;&nbsp;Đỗ Đức Cường — Backend — 2A202601455<br>&nbsp;&nbsp;Nguyễn Thanh Hoàn — Frontend — 2A202601201<br>&nbsp;&nbsp;Đỗ Tuấn Kiệt — AI Engineer — 2A202601335
+
+**Sản phẩm:** VPay — giải pháp chống lừa đảo giao dịch cho ví điện tử
+**Ngày kiểm tra giá API:** 27/08/2026
 
 ## Cấu trúc repository
 
 ```text
 .
 ├── README.md
-├── Trang_Day25_model.xlsx
-├── Trang_Day25_onepager.pdf
-└── init_day25.sh
+├── Trang_Day25_model.xlsx        # mô hình định giá, 7 tab (5 tab làm việc + README + Benchmarks)
+├── Trang_Day25_onepager.pdf      # Monetization One-Pager
+├── Trang_Day25_onepager.docx     # bản nguồn của One-Pager
+└── 4-7-prompt-log.md       # log 2 prompt phản biện §4.7 (accept/reject)
 ```
 
-Hai file artifact hiện là placeholder và cần được thay bằng sản phẩm hoàn chỉnh:
+## Tóm tắt quyết định
 
-- `Trang_Day25_model.xlsx`: mô hình định giá gồm 5 tab.
-- `Trang_Day25_onepager.pdf`: Monetization One-Pager.
+| Hạng mục         | Kết quả                                                                                                                                                   | Ô nguồn              |
+| ------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------- |
+| Ngân sách khách | Vận hành / Rủi ro của ví điện tử — quỹ bồi hoàn gian lận + chi phí xử lý khiếu nại. Người ký: Head of Risk & Fraud / COO Viettel Money | —                     |
+| Định nghĩa Job  | 1 ca can thiệp chống lừa đảo hoàn tất (HỦY hoặc XÁC NHẬN TIẾP TỤC trong 10 phút)                                                              | `1_Cost_Job!B5`      |
+| Biến thể HITL    | B (phạm vi hẹp) — VPay chịu chi phí analyst ra phán quyết rủi ro; ví chịu chi phí CSKH nói chuyện với người dùng                           | `1_Cost_Job!B6`      |
+| Value Metric       | Hybrid ba lớp: phí triển khai một lần + phí nền $2.500/tháng + $1,50/ca hoàn tất                                                                  | `3_Value_Metric!B30` |
+| Kênh GTM          | Sales-Led (founder-led, không tuyển AE trong 90 ngày)                                                                                                    | `4_Channel_Fit!B38`  |
 
 ## Self-Evaluation Checklist
 
-Đánh dấu `[x]` và điền bằng chứng/link trước khi nộp. Điểm tự kiểm tra tối đa: **100 điểm**.
-
-| Đã kiểm tra | Tiêu chí / điểm | Checklist bắt buộc | Bằng chứng, số liệu hoặc link |
-|---|---|---|---|
-| [ ] | **1. Cost/Job Rigor (30đ)** | [ ] Tách đủ 5 thành phần chi phí: **API, Infra, HITL, Retry, Overhead**.<br>[ ] Mẫu số là **job hoàn thành**, không phải request/token.<br>[ ] Có tính **breakeven containment** và nêu rõ giả định.<br>[ ] Ghi **ngày kiểm tra giá API**. | Giá API ngày: `____`<br>Cost/job: `____`<br>Breakeven containment: `____`<br>Link/bảng tính: `____` |
-| [ ] | **2. Value Metric Justification (25đ)** | [ ] Dùng ma trận **Attribution × Autonomy** để phân tích giá trị.<br>[ ] Chốt rõ **đơn vị tính tiền** (per job, per outcome, subscription...).<br>[ ] Có **2 benchmark thực tế**, mỗi benchmark có link. | Ma trận: `____`<br>Đơn vị tính tiền: `____`<br>Benchmark 1 + link: `____`<br>Benchmark 2 + link: `____` |
-| [ ] | **3. Channel Evidence (20đ)** | [ ] Chốt đúng **1 kênh** go-to-market.<br>[ ] Có tính **ngân sách CAC** và nêu công thức/giả định.<br>[ ] Nếu chọn **Partner-Led**, ghi tên công ty partner cụ thể. | Kênh duy nhất: `____`<br>Ngân sách CAC: `____`<br>Công thức/giả định: `____`<br>Tên partner (nếu có): `____` |
-| [ ] | **4. Pain Moment & 90-Day Plan (15đ)** | [ ] Pain Moment có đủ 3 yếu tố: **giờ + việc + app**.<br>[ ] Nêu **điểm nhúng cụ thể** trong workflow.<br>[ ] Plan 90 ngày có **số liệu mục tiêu** và **người phụ trách**. | Pain Moment (giờ / việc / app): `____`<br>Điểm nhúng: `____`<br>Ngày 1-30: `____` / Owner: `____`<br>Ngày 31-60: `____` / Owner: `____`<br>Ngày 61-90: `____` / Owner: `____` |
-| [ ] | **5. Evidence Pack Readiness (10đ)** | [ ] Liệt kê đủ **3 tài sản bằng chứng**.<br>[ ] Mỗi tài sản có nội dung cụ thể **hoặc deadline rõ ràng**.<br>[ ] Các tài sản đã được liên kết/đặt tên để người chấm mở được. | 1. Tài sản: `____` / Nội dung hoặc deadline: `____`<br>2. Tài sản: `____` / Nội dung hoặc deadline: `____`<br>3. Tài sản: `____` / Nội dung hoặc deadline: `____` |
+| Đã kiểm tra | Tiêu chí / điểm                            | Checklist bắt buộc                                                                                                                                                                                                                                                          | Bằng chứng, số liệu hoặc link                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
+| -------------- | ---------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| [x]            | **1. Cost/Job Rigor (30đ)**             | [x] Tách đủ 5 thành phần chi phí:**API, Infra, HITL, Retry, Overhead**.[x] Mẫu số là **job hoàn thành**, không phải request/token.[x] Có tính **breakeven containment** và nêu rõ giả định.[x] Ghi **ngày kiểm tra giá API**. | Giá API ngày:`27/08/2026` (Gemini 3.5 Flash-Lite $0,30/$2,50, cache $0,03 — [ai.google.dev](https://ai.google.dev/gemini-api/docs/pricing))Cost/job: `$0,4626 = 12.028 ₫` (`1_Cost_Job!B66`)Mẫu số: `3.750 job hoàn thành/tháng` (`1_Cost_Job!B11`), không phải 5.000 job thửBreakeven containment: `69,3%` (`2_Pricing!B33`) vs hiện tại `75%` (ước tính)Link/bảng tính: `Trang_Day25_model.xlsx` tab `1_Cost_Job`, `2_Pricing`                                                                                                                                                                                                                                                                                                                                                                                                                                     |
+| [x]            | **2. Value Metric Justification (25đ)** | [x] Dùng ma trận**Attribution × Autonomy** để phân tích giá trị.[x] Chốt rõ **đơn vị tính tiền**.[x] Có **2 benchmark thực tế**, mỗi benchmark có link.                                                                                | Ma trận: Attribution`4/10` (`3_Value_Metric!B10`) × Autonomy `4/10` (`B18`) → góc trái dưới → vùng Seat/HybridĐơn vị tính tiền: `Hybrid` — phí triển khai + phí nền $2.500/tháng + $1,50/ca can thiệp hoàn tấtBenchmark 1: Stripe Radar · Hybrid · từ $10/tháng hoặc $0,05/giao dịch được quét · [stripe.com/pricing](https://stripe.com/pricing)Benchmark 2: Intercom Fin · Outcome · $0,99/resolution, sàn 50 outcome/tháng · [fin.ai/pricing](https://fin.ai/pricing/)                                                                                                                                                                                                                                                                                                                                                                               |
+| [x]            | **3. Channel Evidence (20đ)**           | [x] Chốt đúng**1 kênh** go-to-market.[x] Có tính **ngân sách CAC** và nêu công thức/giả định.[x] Nếu chọn **Partner-Led**, ghi tên công ty partner cụ thể.                                                                             | Kênh duy nhất:`Sales-Led` (`4_Channel_Fit!B38`) — chấm điểm Sales-Led 24 · Partner-Led 16 · PLG 13Ngân sách CAC: `$141.079/khách` (`B9`)Công thức: ARPU $8.500 × GM 69,2% × 24 tháng payback (Enterprise, Bessemer 2024). CAC thực tế $44.800 = cost/opportunity $11.200 (ICONIQ 2026) ÷ win rate 25% → lệch `0,32 lần`, ngân sách dư 3,2 lầnTên partner: `Không áp dụng` — Viettel Money là khách hàng, không phải kênh phân phối. Trạng thái tiếp xúc: **chưa liên hệ**, mọi số liệu từ nguồn công bố (`4_Channel_Fit!B40`)                                                                                                                                                                                                                                                                                                                                                                                                                  |
+| [x]            | **4. Pain Moment & 90-Day Plan (15đ)**  | [x] Pain Moment có đủ 3 yếu tố:**giờ + việc + app**.[x] Nêu **điểm nhúng cụ thể** trong workflow.[x] Plan 90 ngày có **số liệu mục tiêu** và **người phụ trách**.                                                             | Pain Moment:`9–11h / 14–16h ngày thường (giả thuyết)` / `đang trong cuộc gọi nhiều bước với kẻ mạo danh công an đọc đúng thông tin cá nhân thật, vừa nhập số tài khoản, ngón tay ở nút Xác nhận` / `app Viettel Money, màn hình xác nhận chuyển tiền, cuộc gọi chạy nền`Điểm nhúng: `SDK chèn vào bước xác nhận giao dịch trong app ví + webhook vào risk decision pipeline`Ngày 1-30: trích log khiếu nại n≥200 ra histogram giờ, phỏng vấn 8 nạn nhân, chạy eval 300 ca, ký pilot có trả phí. KPI: containment ±5%, ≥6/8 xác nhận Pain Moment / Owner: `Trang`Ngày 31-60/61-90: pilot 8 tuần, Pilot Report + Risk Checklist qua InfoSec, mở 2 cuộc trò chuyện. KPI: containment ≥69%, GM thực ≥60% / Owner: `Trang`Tháng 4+: 2 khách trả phí, ARPU ≥$8.500 / Owner: `Trang (PM) + AE đầu tiên` |
+| [x]            | **5. Evidence Pack Readiness (10đ)**    | [x] Liệt kê đủ**3 tài sản bằng chứng**.[x] Mỗi tài sản có nội dung cụ thể **hoặc deadline rõ ràng**.[x] Các tài sản đã được liên kết/đặt tên để người chấm mở được.                                                       | 1. Eval Results / Kiệt (AI Eng) / deadline `26/09/2026` — ra containment thật + phút analyst/ca2. Risk Checklist / Trang (PM) + Cường (BE) / deadline `31/10/2026` — 3 câu trả lời Procurement3. Pilot Report / Trang (PM) + Kiệt (AI Eng) / deadline `30/11/2026` — 8 tuần, số ca, tỷ lệ hoàn tất, tổn thất tránh được                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
 
 ### Evidence Pack
 
-| Tài sản | Nội dung cụ thể hoặc deadline | Vị trí/link |
-|---|---|---|
-| 1. Model định giá | `____` | `Trang_Day25_model.xlsx` |
-| 2. Monetization One-Pager | `____` | `Trang_Day25_onepager.pdf` |
-| 3. [Tên tài sản bổ sung] | `____` | `____` |
+| Tài sản                    | Nội dung cụ thể hoặc deadline                                                                                                                                    | Vị trí/link          |
+| ---------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------- |
+| 1. Model định giá         | Đã có — 7 tab, Cost/Job $0,4626, giá $1,50, GM 69,2%, breakeven containment 69,3%                                                                               | `Trang_Day25_model.xlsx`   |
+| 2. Monetization One-Pager    | Đã có — 3 khối Pricing / GTM / Evidence, mọi con số dẫn về ô Excel                                                                                         | `Trang_Day25_onepager.pdf` |
+| 3. Eval Results (Day 21–22) | **CHƯA CÓ** — chạy bộ eval đã thiết kế trên 300 ca thật, ra containment và phút analyst/ca. Owner: Đỗ Tuấn Kiệt (AI Engineer) · deadline `26/09/2026`             | `5_90Day_Plan!C23`   |
+| 4. Risk Checklist            | **CHƯA CÓ** — hallucinate / data không fine-tune / escrow mã nguồn khi VPay ngừng hoạt động. Owner: Trang (PM) + Đỗ Đức Cường (Backend) · deadline `31/10/2026` | `5_90Day_Plan!C24`   |
+| 5. Pilot Report              | **CHƯA CÓ** — 8 tuần, số ca, tỷ lệ hoàn tất, tổn thất tránh được. Owner: Trang (PM) + Đỗ Tuấn Kiệt (AI Engineer) · deadline `30/11/2026`                             | `5_90Day_Plan!C25`   |
 
-## Cách khởi tạo
+## Hai điểm yếu tự nhận
 
-Từ thư mục chứa repository, chạy:
+1. **Containment 75% là ước tính, không phải kết quả eval.** Breakeven là 69,3% — biên độ an toàn chỉ 5,7 điểm. Day 20–21 mới có thiết kế bộ eval, chưa chạy ra số. Đây là lý do Eval Results là tài sản số 1 của Evidence Pack.
+2. **Số phút analyst xử lý một ca escalate (8 phút) chưa đo.** Nếu thực tế là 16 phút, breakeven containment nhảy lên 81,4% và mô hình gãy. Đây là con số nhạy nhất trong toàn bộ mô hình — nhạy hơn cả giá token.
 
-```bash
-bash init_day25.sh "Track1_Day25_[Điền_Mã_Học_Viên]_LuongThanhTrang"
-```
+## Bài test người lạ
 
-Script sẽ tạo thư mục gốc, khởi tạo Git nếu cần, tạo README template và tạo hai file placeholder đúng tên. Nếu không truyền tên, script dùng tên repo mẫu trong yêu cầu bài Lab.
+Chạy ngày 27/08/2026 với một người chưa biết gì về dự án. Trả lời **đúng cả 3 câu**, **0 câu hỏi lại** (mục tiêu ≤ 3). Chi tiết: `5_90Day_Plan!B29:C32`.
+
+## Prompt phản biện §4.7
+
+Đã chạy **2 prompt**: §4.7.1 Cost/Job Stress Test và §4.7.5 One-Pager Defensibility Check. Kết quả **9 accept · 2 partial · 1 reject**, ghi đầy đủ trong [4-7-prompt-log.md](4-7-prompt-log.md).
+
+Bốn khoản chi phí bị bỏ sót đã được nhận và đưa vào mô hình: thông báo "người tin cậy" qua SMS, chi phí chạy eval thật, trực on-call 24/7, pen test + audit tuân thủ hằng năm.
+
+Phát hiện quan trọng nhất: mô hình **miễn nhiễm với biến động giá token** (giá LLM tăng 5 lần chỉ hạ GM xuống 65,6%, vì token chỉ chiếm 1,5% chi phí) nhưng **rất nhạy với thời gian con người xử lý một ca**. Biên fully-loaded với một khách chỉ còn 13,9% — khách thứ hai không phải tham vọng mà là điều kiện sống còn.
